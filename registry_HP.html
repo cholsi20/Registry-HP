@@ -59,7 +59,7 @@
     }
 
     #mobile_header {
-    	max-width: 50%;
+    	max-width: 70%;
     	height: auto;
     	text-align: center;
     	margin: 0 auto;
@@ -107,6 +107,9 @@
 
 </style>
 </head>
+
+<!-- DETERMINES AM/PM TYPE AND DATE FOR UTM VALUES, ETC -->
+<script runat=server language=ampscript>
 %%[
 IF FORMAT(Now(), "tt") == "AM" THEN
 SET @Email_Type = "am"
@@ -147,11 +150,14 @@ THEN SET @greeting = @hello /*greeting is just hello */
 ELSE 
 SET @greeting = Concat(@dear, @firstname) /* otherwise, concatenate alternate greeting */
 ENDIF
-
 /* END GREETING DETERMINATION LOGIC */
-
-
 ]%%
+</script>
+<!-- END AMPSCRIPT -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BEGIN EMAIL CONTENT -->
+
+<!-- BEGIN EMAIL BODY -->
 <body style="margin: 0; padding: 0;">
 
  	<!-- BEGIN OUTER SHELL TABLE -->
@@ -280,6 +286,9 @@ ENDIF
               				
               					<br> 
               					<br> 
+                        <font style="color: #999; font-family:Helvetica, sans-serif, Arial; font-size: 9px;padding-bottom: 5px;display: block;">Address: 315 Hudson Street, 8th Floor New York, NY 10013</font>
+
+                        <br>
               					<br>
               					
               					<a href="https://www.onekingslane.com/privacy?UTM_source=Corporate&utm_medium=Launch&utm_campaign=%%=v(jobid)=%%&utm_content=%%xtshortdate%%.%%_subscriberkey%%.%%=v(@Email_Type)=%%&utm_term=Footer.PrivacyPolicy" style="text-decoration:none; color: #999; font-size: 10px;">
